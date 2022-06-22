@@ -84,8 +84,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EnumConverter.cs" />
     <Compile Include="EnumDescriptionTypeConverter.cs" />
+    <Compile Include="ExporterToXLS.cs" />
     <Compile Include="NaNConverter.cs" />
     <Compile Include="TableGenerator.cs" />
     <Compile Include="MainWindow.xaml.cs">

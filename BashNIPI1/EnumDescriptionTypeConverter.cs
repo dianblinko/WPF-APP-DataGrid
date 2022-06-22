@@ -1,53 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
 
 namespace BashNIPI1
 {
-    public static class EnumGetDescription
+    public class EnumDescriptionTypeConverter : EnumConverter
     {
-        public static string GetDescription(this Enum enumObj)
+        public EnumDescriptionTypeConverter(Type type) : base(type) { }
+
+        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
         {
-            FieldInfo fieldInfo = enumObj.GetType().GetField(enumObj.ToString());
-
-            object[] attribArray = fieldInfo.GetCustomAttributes(false);
-
-            if (attribArray.Length == 0)
+            if (destinationType == typeof(string))
             {
-                return enumObj.ToString();
+                if (value != null)
+                {
+                    FieldInfo fi = value.GetType().GetField(value.ToString());
+                    if (fi != null)
+                    {
+                        var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                        return ((attributes.Length > 0) && (!String.IsNullOrEmpty(attributes[0].Description))) ? attributes[0].Description : value.ToString();
+                    }
+                }
+
+                return string.Empty;
             }
-            else
-            {
-                DescriptionAttribute attrib = attribArray[0] as DescriptionAttribute;
-                return attrib.Description;
-            }
-        }
-    }
 
-    public class VCMyEnumToString : IValueConverter
-    {
-        #region IValueConverter Members
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (StringToEnum<EnumTypeFlowAtDepthL>(value.ToString())).GetDescription(); // <-- The extention method
+            return base.ConvertTo(context, culture, value, destinationType);
         }
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return StringToEnum<EnumTypeFlowAtDepthL>(value.ToString());
-        }
-
-        public static T StringToEnum<T>(string name)
-        {
-            return (T)Enum.Parse(typeof(T), name);
-        }
-
-        #endregion
     }
 }

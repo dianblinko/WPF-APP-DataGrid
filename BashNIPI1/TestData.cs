@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BashNIPI1
 {
+    [TypeConverter(typeof(EnumDescriptionTypeConverter))]
     public enum EnumTypeFlowAtDepthL
     {
         [Description("Турбулентный")]
-        turbulent,
+        Turbulent,
         [Description("Ламинарный")]
-        laminar
+        Laminar
     }
     public class TestData
     {
@@ -47,7 +45,7 @@ namespace BashNIPI1
         public double ThermalConductivityMixture { get; set; }
 
         [DisplayName("Тип потока на глубине L.")]
-        public EnumTypeFlowAtDepthL TypeFlowAtDepthL { get; set; } //// ENUM ламинарный турбулентный
+        public EnumTypeFlowAtDepthL TypeFlowAtDepthL { get; set; } 
 
         [DisplayName("Дебит смеси с водой.")]
         public double FlorRateMixtureWater { get; set; }
@@ -102,36 +100,6 @@ namespace BashNIPI1
 
         [DisplayName("Коэффициент  теплообмена")]
         public double HeatTransferCoefficient { get; set; }
-        
-        public int Property1 { get; set; }
-        public int Property2 { get; set; }
-        public int Property3 { get; set; }
-        public int Property4 { get; set; }
-        public int Property5 { get; set; }
-        public int Property6 { get; set; }
-        public int Property7 { get; set; }
-        public int Property8 { get; set; }
-        public int Property9 { get; set; }
-        public int Property10 { get; set; }
-        public int Property11 { get; set; }
-        public int Property12 { get; set; }
-        public int Property13 { get; set; }
-        public int Property14 { get; set; }
-        public int Property15 { get; set; }
-        public int Property16 { get; set; }
-        public int Property17 { get; set; }
-        public int Property18 { get; set; }
-        public int Property19 { get; set; }
-        public int Property20 { get; set; }
-        public int Property21 { get; set; }
-        public int Property22 { get; set; }
-        public int Property23 { get; set; }
-        public int Property24 { get; set; }
-        public int Property25 { get; set; }
-        public int Property26 { get; set; }
-        public int Property27 { get; set; }
-        public int Property28 { get; set; }
-        public int Property29 { get; set; }
         public int Property30 { get; set; }
         public int Property31 { get; set; }
         public int Property32 { get; set; }
@@ -174,6 +142,167 @@ namespace BashNIPI1
         public int Property69 { get; set; }
         public int Property70 { get; set; }
         public int Property71 { get; set; }
+        public int Property72 { get; set; }
+        public int Property73 { get; set; }
+        public int Property74 { get; set; }
+        public int Property75 { get; set; }
+        public int Property76 { get; set; }
+        public int Property77 { get; set; }
+        public int Property78 { get; set; }
+        public int Property79 { get; set; }
+        public int Property80 { get; set; }
+        public int Property81 { get; set; }
+        public int Property82 { get; set; }
+        public int Property83 { get; set; }
+        public int Property84 { get; set; }
+        public int Property85 { get; set; }
+        public int Property86 { get; set; }
+        public int Property87 { get; set; }
+        public int Property88 { get; set; }
+        public int Property89 { get; set; }
+        public int Property90 { get; set; }
+        public int Property91 { get; set; }
+        public int Property92 { get; set; }
+        public int Property93 { get; set; }
+        public int Property94 { get; set; }
+        public int Property95 { get; set; }
+        public int Property96 { get; set; }
+        public int Property97 { get; set; }
+        public int Property98 { get; set; }
+        public int Property99 { get; set; }
+        public int Property100 { get; set; }
+
+        public static double GenerateDoubleorNaN(Random rand)
+        {
+            return rand.Next() % 5 == 0 ? double.NaN : rand.NextDouble();
+        }
+        public TestData(int i, Random rand)
+        {;
+            Name = "Имя " + i;
+            Pressure = GenerateDoubleorNaN(rand);
+            TemperatureAtDepthL = rand.NextDouble();
+            VolumeFactorGas = rand.NextDouble();
+            VolumeFactorOil = rand.NextDouble();
+            VolumeFactorWater = rand.NextDouble();
+            ThermalConductivityGas = rand.NextDouble();
+            ThermalConductivityOil = rand.NextDouble();
+            ThermalConductivityWater = rand.NextDouble();
+            ThermalConductivityMixture = rand.NextDouble();
+            TypeFlowAtDepthL = (EnumTypeFlowAtDepthL)rand.Next(0, 2);
+            FlorRateMixtureWater = rand.NextDouble();
+            GasFlowRateUnderPumpConditions = rand.NextDouble();
+            OilFlowRateUnderPumpConditions = rand.NextDouble();
+            WaterFlowRateUnderPumpConditions = rand.NextDouble();
+            ConsumptionNgsStd = rand.NextDouble();
+            ConsumptionNgsEffective = rand.NextDouble();
+            MassFlowRateWater = rand.NextDouble();
+            ConsumptionNgsMassKg = rand.NextDouble();
+            ConsumptionNgsMassKilomol = rand.NextDouble();
+            WaterContentInFractions = rand.NextDouble();
+            MoleFractionOnGas = rand.NextDouble();
+            VolumeFractionfGas = rand.NextDouble();
+            ViscosityOfGas = rand.NextDouble();
+            LiquidVicosity = rand.NextDouble();
+            OilVicosity = rand.NextDouble();
+            WaterVicosity = rand.NextDouble();
+            MixtureVicosity = rand.NextDouble();
+            HeatTransferCoefficient = rand.NextDouble();
+            Property30 = rand.Next();
+            Property31 = rand.Next();
+            Property32 = rand.Next();
+            Property33 = rand.Next();
+            Property34 = rand.Next();
+            Property35 = rand.Next();
+            Property36 = rand.Next();
+            Property37 = rand.Next();
+            Property38 = rand.Next();
+            Property39 = rand.Next();
+            Property40 = rand.Next();
+            Property41 = rand.Next();
+            Property42 = rand.Next();
+            Property43 = rand.Next();
+            Property44 = rand.Next();
+            Property45 = rand.Next();
+            Property46 = rand.Next();
+            Property47 = rand.Next();
+            Property48 = rand.Next();
+            Property49 = rand.Next();
+            Property50 = rand.Next();
+            Property51 = rand.Next();
+            Property52 = rand.Next();
+            Property53 = rand.Next();
+            Property54 = rand.Next();
+            Property55 = rand.Next();
+            Property56 = rand.Next();
+            Property57 = rand.Next();
+            Property58 = rand.Next();
+            Property59 = rand.Next();
+            Property60 = rand.Next();
+            Property61 = rand.Next();
+            Property62 = rand.Next();
+            Property63 = rand.Next();
+            Property64 = rand.Next();
+            Property65 = rand.Next();
+            Property66 = rand.Next();
+            Property67 = rand.Next();
+            Property68 = rand.Next();
+            Property69 = rand.Next();
+            Property70 = rand.Next();
+            Property71 = rand.Next();
+            Property72 = rand.Next();
+            Property73 = rand.Next();
+            Property74 = rand.Next();
+            Property75 = rand.Next();
+            Property76 = rand.Next();
+            Property77 = rand.Next();
+            Property78 = rand.Next();
+            Property79 = rand.Next();
+            Property80 = rand.Next();
+            Property81 = rand.Next();
+            Property82 = rand.Next();
+            Property83 = rand.Next();
+            Property84 = rand.Next();
+            Property85 = rand.Next();
+            Property86 = rand.Next();
+            Property87 = rand.Next();
+            Property88 = rand.Next();
+            Property89 = rand.Next();
+            Property90 = rand.Next();
+            Property91 = rand.Next();
+            Property92 = rand.Next();
+            Property93 = rand.Next();
+            Property94 = rand.Next();
+            Property95 = rand.Next();
+            Property96 = rand.Next();
+            Property97 = rand.Next();
+            Property98 = rand.Next();
+            Property99 = rand.Next();
+            Property100 = rand.Next();
+        }
+
+        public static string[] GetAttribute(object value)
+        {
+            string[] propertis = new string[100];
+            int i = 0;
+            foreach (var prop in value.GetType().GetProperties())
+            {
+                var propertyDsplayName = prop.GetCustomAttributes(false)
+                    .OfType<DisplayNameAttribute>()
+                    .FirstOrDefault();
+                if (propertyDsplayName != null)
+                {
+                    propertis[i++] = propertyDsplayName.DisplayName;
+                }
+                else
+                {
+                    propertis[i++] = prop.Name;
+                }
+            }
+            return propertis;
+        }
+        
     }
+
+    
 
 }

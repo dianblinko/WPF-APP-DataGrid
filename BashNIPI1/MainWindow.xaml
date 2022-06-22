@@ -9,8 +9,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
-        <local:EnumConverter x:Key="EnumConverter"></local:EnumConverter>
-        <local:NaNConverter x:Key="NaNConverter"></local:NaNConverter>
         <Style x:Key="dataGridColHeadStyle"  TargetType="DataGridColumnHeader" >
             <Setter Property="Foreground" Value="Black" />
             <EventSetter Event="Click" Handler="ColumnHeader_Click"/>
