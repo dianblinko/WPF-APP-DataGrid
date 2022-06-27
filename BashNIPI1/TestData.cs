@@ -15,9 +15,9 @@ namespace BashNIPI1
     public class TestData
     {
         [DisplayName("Название")]
-        public string Name { get; set;}
+        public string Name { get; set; }
 
-        [DisplayName("Давление, атм.")]
+        [DisplayName("Давление, \nатм.")]
         public double Pressure { get; set; }
 
         [DisplayName("Температура на глубине L, °С.")]
@@ -31,7 +31,7 @@ namespace BashNIPI1
 
         [DisplayName("Объемный фактор воды.")]
         public double VolumeFactorWater { get; set; }
-        
+
         [DisplayName("Теплопроводность газа.")]
         public double ThermalConductivityGas { get; set; }
 
@@ -45,7 +45,7 @@ namespace BashNIPI1
         public double ThermalConductivityMixture { get; set; }
 
         [DisplayName("Тип потока на глубине L.")]
-        public EnumTypeFlowAtDepthL TypeFlowAtDepthL { get; set; } 
+        public EnumTypeFlowAtDepthL TypeFlowAtDepthL { get; set; }
 
         [DisplayName("Дебит смеси с водой.")]
         public double FlorRateMixtureWater { get; set; }
@@ -177,7 +177,7 @@ namespace BashNIPI1
             return rand.Next() % 5 == 0 ? double.NaN : rand.NextDouble();
         }
         public TestData(int i, Random rand)
-        {;
+        {
             Name = "Имя " + i;
             Pressure = GenerateDoubleorNaN(rand);
             TemperatureAtDepthL = rand.NextDouble();
@@ -280,29 +280,30 @@ namespace BashNIPI1
             Property100 = rand.Next();
         }
 
-        public static string[] GetAttribute(object value)
+        public static string[] GetDisplayNames()
         {
-            string[] propertis = new string[100];
+            TestData value = new TestData(0, new Random());
+            var propertiesNames = new string[100];
             int i = 0;
             foreach (var prop in value.GetType().GetProperties())
             {
-                var propertyDsplayName = prop.GetCustomAttributes(false)
+                var propertyDisplayName = prop.GetCustomAttributes(false)
                     .OfType<DisplayNameAttribute>()
                     .FirstOrDefault();
-                if (propertyDsplayName != null)
+                if (propertyDisplayName != null)
                 {
-                    propertis[i++] = propertyDsplayName.DisplayName;
+                    propertiesNames[i++] = propertyDisplayName.DisplayName;
                 }
                 else
                 {
-                    propertis[i++] = prop.Name;
+                    propertiesNames[i++] = prop.Name;
                 }
             }
-            return propertis;
+            return propertiesNames;
         }
-        
+
     }
 
-    
+
 
 }

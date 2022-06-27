@@ -3,25 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BashNIPI1"
-        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
-        xmlns:System="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Работа с таблицей" Height="450" Width="800" Icon="/icon.png">
     <Window.Resources>
         <Style x:Key="dataGridColHeadStyle"  TargetType="DataGridColumnHeader" >
             <Setter Property="Foreground" Value="Black" />
             <EventSetter Event="Click" Handler="ColumnHeader_Click"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style x:Key="dataGridStyle" TargetType="{x:Type DataGrid}">
             <Style.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFF6D106" />
-                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#FFABABAB" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#FFABABAB"/>
             </Style.Resources>
-            <Setter Property="ColumnHeaderStyle" Value="{StaticResource dataGridColHeadStyle}"></Setter>
-            </Style>
+            <Setter Property="ColumnHeaderStyle" Value="{StaticResource dataGridColHeadStyle}"/>
+        </Style>
     </Window.Resources>
 
     <Grid>

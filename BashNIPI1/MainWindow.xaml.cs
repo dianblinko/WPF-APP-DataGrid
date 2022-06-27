@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using Microsoft.Win32;
 using Window = System.Windows.Window;
 
 namespace BashNIPI1
@@ -43,18 +44,25 @@ namespace BashNIPI1
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)
         {
-            ExporterToXLS.Export(testDataList);
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = "ExportTable",
+                DefaultExt = ".xls",
+                Filter = "Книга Excel 97-2003 (*.xls)|*.xls"
+            };
+            if (saveFileDialog.ShowDialog() == true)
+                ExporterToXLS.Export(testDataList, saveFileDialog.FileName);
         }
 
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.PropertyType == typeof(double))
             {
-                DataGridTextColumn column = e.Column as DataGridTextColumn;
-                NaNConverter converter = new NaNConverter();
-                (column.Binding as Binding).Converter = converter;
+                var column = e.Column as DataGridTextColumn;
+                var converter = new NaNConverter();
+                if (column != null) ((Binding)column.Binding).Converter = converter;
             }
-            
+
             string displayName = GetPropertyDisplayName(e.PropertyDescriptor);
             if (!string.IsNullOrEmpty(displayName))
             {
